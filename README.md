@@ -11,19 +11,3 @@ MVCC 与锁协议：基于两阶段锁（2PL）协议和 MVCC 实现事务的可
 索引与表管理：实现基于 B+ 树的聚簇索引，支持高效的索引查找；并构建表管理器，负责管理表结构和字段信息，包括 SQL 语句的解析功能。
 网络通信：通过 Socket 编程实现数据库与客户端的通信，支持执行类 SQL 语句并返回查询结果；客户端提供简易 Shell 界面，方便用户操作。
 
-运行方式
-注意首先需要在 pom.xml 中调整编译版本，如果导入 IDE，请更改项目的编译版本以适应你的 JDK
-
-首先执行以下命令编译源码：
-
-mvn compile
-接着执行以下命令以 /tmp/mydb 作为路径创建数据库：
-
-mvn exec:java -Dexec.mainClass="top.guoziyang.mydb.backend.Launcher" -Dexec.args="-create /tmp/mydb"
-随后通过以下命令以默认参数启动数据库服务：
-
-mvn exec:java -Dexec.mainClass="top.guoziyang.mydb.backend.Launcher" -Dexec.args="-open /tmp/mydb"
-这时数据库服务就已经启动在本机的 9999 端口。重新启动一个终端，执行以下命令启动客户端连接数据库：
-
-mvn exec:java -Dexec.mainClass="top.guoziyang.mydb.client.Launcher"
-会启动一个交互式命令行，就可以在这里输入类 SQL 语法，回车会发送语句到服务，并输出执行的结果。
